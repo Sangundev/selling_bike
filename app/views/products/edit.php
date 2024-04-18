@@ -53,7 +53,16 @@ include_once 'app/views/share/header.php'
             <br>
             <input type="file" class="form-control" id="image" name="image" required>
         </div>
-
+        <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="category" name="category">
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?=$category['id']?>" <?php if ($category['id'] == $product->category_id) echo 'selected'; ?>>
+                            <?=$category['name']?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

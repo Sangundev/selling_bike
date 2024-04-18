@@ -87,12 +87,11 @@ class ProductModel
 
     public function getProductById($id)
     {
-        $query = "SELECT * FROM " . $this->table_name . " where id = $id";
-
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-        return $result;
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Return a single product
     }
 
     //updateProduct

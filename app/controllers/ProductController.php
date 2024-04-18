@@ -110,19 +110,26 @@ class ProductController {
         }
     }
 
-    public function edit($id){
+        // Assuming $product contains the product information and $categories contains the list of categories
+    public function edit($productId)
+    {
+        // Retrieve product details by ID
+        $product = $this->productModel->getProductById($productId);
+        
+        // Retrieve categories
+        $categories = $this->productModel->getAllCategories(); // Adjust this according to your model method
 
-        $product = $this->productModel->getProductById($id);
-
-        // var_dump($product);
-        // die();
-
+        // Check if the product exists
         if ($product) {
-            include_once 'app/views/products/edit.php';
+            // Load the view for editing product details
+            include_once 'app/views/admin/edit_product.php';
         } else {
+            // If the product does not exist, show a not found message
             include_once 'app/views/share/not-found.php';
         }
     }
+
+    
 
     // update
     public function update($id) {
@@ -156,10 +163,10 @@ class ProductController {
             if (is_array($result)) {
                 // Có lỗi, hiển thị lại form với thông báo lỗi
                 $errors = $result;
-                include 'app/views/products/edit.php'; // Đường dẫn đến file form sửa sản phẩm
+                include 'app/views/admin/edit_product.php'; // Đường dẫn đến file form sửa sản phẩm
             } else {
-                // Không có lỗi, chuyển hướng về trang chi tiết sản phẩm
-                header("Location: /php/product/detail/$id");
+                header("Location: index");
+                exit();
             }
         }
     }

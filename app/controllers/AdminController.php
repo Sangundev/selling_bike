@@ -7,12 +7,14 @@ class AdminController
 {
     private $adminModel;
     private $db;
+    private $productModel;
 
     public function __construct()
     {
         // Establish a database connection and initialize the product model
         $this->db = (new Database())->getConnection();
         $this->adminModel = new AdminModel($this->db);
+        $this->productModel = new ProductModel($this->db);
     }
 
     public function order()
@@ -239,7 +241,7 @@ class AdminController
                 include 'app/views/admin/edit_product.php'; // Đường dẫn đến file form sửa sản phẩm
             } else {
                 // Không có lỗi, chuyển hướng về trang chi tiết sản phẩm
-                header("Location: /php/product/detail/$id");
+                header("Location: /php/admin");
             }
         }
     }

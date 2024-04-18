@@ -1,9 +1,9 @@
 <?php
 require_once 'app/controllers/AdminController.php';
+require_once 'app/controllers/ProductController.php';
 include_once 'app/views/admin/header_admin.php';
 // Instantiate the AdminController
 $adminController = new AdminController();
-
 
 // Kiểm tra nếu có yêu cầu xóa sản phẩm
 if (isset($_GET['action']) && $_GET['action'] == 'delete') {
@@ -68,9 +68,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete') {
                                                 <td><img src="<?php echo $product['image']; ?>" alt="Product Image"
                                                         style="width: 100px; height: 100px;"></td>
                                                 <td>
-                                                    <a href="/php/admin/edit?id=<?php echo $product['id']; ?>"
-                                                        class="btn btn-primary">Sửa</a>
-
+                                                <a href="/php/product/edit/<?php echo $product['id']; ?>" class="btn btn-warning">Sửa</a>
                                                     <a href="/php/admin/index?action=delete&id=<?php echo $product['id']; ?>"
                                                         class="btn btn-danger"
                                                         onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">Xóa</a>

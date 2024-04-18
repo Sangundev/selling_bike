@@ -41,3 +41,4 @@
         </div>
     </div>
 </div>
+<?php include_once 'app/views/admin/footer_admin.php'; ?>
